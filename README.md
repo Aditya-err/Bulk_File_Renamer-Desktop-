@@ -1,6 +1,8 @@
 # 📁 Bulk File Renamer - Desktop Application
 
-**A professional offline desktop application for bulk file renaming operations**
+**A professional, fully offline Windows desktop application to rename multiple files safely and efficiently using a clean GUI.**
+
+**Built using Python + Tkinter, packaged as an EXE & MSI installer, with support for preview, undo, logging, and dark mode.**
 
 ![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
 ![Tkinter](https://img.shields.io/badge/GUI-Tkinter-green.svg)
@@ -65,6 +67,22 @@
 - **Confirmation Dialogs** - Prevents accidental operations
 - **Error Messages** - Clear, actionable error reporting
 
+---
+## ✨ Features
+
+- 📁 Select any target directory  
+- 🔤 Add prefix and suffix  
+- 🔢 Sequential numbering with custom start & padding  
+- 🕒 Append timestamps (custom formats supported)  
+- 🧩 Regex-based filename replacement  
+- 🎯 Extension filtering (`.jpg`, `.png`, `.txt`, etc.)  
+- 👀 Preview before renaming (Dry Run)  
+- ↩️ Undo last rename  
+- 💾 Backup original files automatically  
+- 📝 Optional log file generation  
+- 🌙 Dark Mode / ☀️ Light Mode  
+- 📴 100% offline (no internet required)
+  
 ---
 
 ## 🛠️ Technologies Used
