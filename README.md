@@ -68,7 +68,7 @@
 - **Error Messages** - Clear, actionable error reporting
 
 ---
-## ✨ Features
+## ✨ Other Features
 
 - 📁 Select any target directory  
 - 🔤 Add prefix and suffix  
@@ -138,6 +138,7 @@ File_Renamer_Script/
 
 ## 🚀 Installation
 
+
 ### Option 1: Run from Source (Developers)
 
 **Prerequisites:**
@@ -166,6 +167,14 @@ File_Renamer_Script/
 1. **Download the `.exe` file** from the `dist/` folder (after building)
 2. **Double-click** `BulkFileRenamer.exe`
 3. **No Python installation required!**
+
+---
+
+## 📦 Download
+
+The ready-to-use Windows installer (`.msi`) is available under **GitHub Releases**.
+
+👉 Go to **Releases** → Download → Install → Use
 
 ---
 
