@@ -1,0 +1,20 @@
+# Bulk File Renamer - Python Dependencies
+# ========================================
+# This project uses only Python standard library modules
+# No external dependencies required for core functionality
+#
+# However, for building and optional features:
+
+# Build Tool (for creating .exe)
+# -------------------------------
+pyinstaller>=5.0
+
+# Optional: For creating custom icons programmatically
+# -----------------------------------------------------
+# Pillow>=9.0  # Uncomment if you want to use create_icon.py
+
+# Development Dependencies (optional)
+# -----------------------------------
+# pytest>=7.0  # For unit testing
+# black>=22.0  # For code formatting
+# flake8>=4.0  # For linting

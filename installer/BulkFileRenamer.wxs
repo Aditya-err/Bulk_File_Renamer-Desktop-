@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Bulk File Renamer - WiX Installer Configuration
+  
+  This file defines the Windows MSI installer using WiX Toolset.
+  
+  Features:
+    - Installs to Program Files
+    - Creates Desktop shortcut
+    - Creates Start Menu shortcut
+    - Supports clean uninstallation
+    - Fully offline installer
+-->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- Product Definition -->
+  <Product 
+    Id="*" 
+    Name="Bulk File Renamer" 
+    Language="1033" 
+    Version="1.0.0.0" 
+    Manufacturer="YourName" 
+    UpgradeCode="12345678-1234-1234-1234-123456789ABC">
+    
+    <!-- Package Information -->
+    <Package 
+      InstallerVersion="200" 
+      Compressed="yes" 
+      InstallScope="perMachine" 
+      Description="Bulk File Renamer - Professional File Renaming Tool"
+      Comments="Offline desktop application for bulk file renaming operations"
+      Manufacturer="YourName" />
+
+    <!-- Installer UI -->
+    <UIRef Id="WixUI_InstallDir" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    
+    <!-- License Agreement (optional - using default WiX license) -->
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    
+    
+    <!-- Add/Remove Programs Information -->
+    <Property Id="ARPHELPLINK" Value="https://github.com/yourusername/bulk-file-renamer" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/yourusername/bulk-file-renamer" />
+    <Property Id="ARPNOREPAIR" Value="1" />
+
+    <!-- Media (embed files in single .msi) -->
+    <Media Id="1" Cabinet="BulkFileRenamer.cab" EmbedCab="yes" />
+
+    <!-- Upgrade Logic (for future versions) -->
+    <MajorUpgrade 
+      DowngradeErrorMessage="A newer version of [ProductName] is already installed." 
+      AllowSameVersionUpgrades="yes" />
+
+    <!-- Feature Definition -->
+    <Feature 
+      Id="ProductFeature" 
+      Title="Bulk File Renamer" 
+      Level="1"
+      Description="Main application files"
+      ConfigurableDirectory="INSTALLFOLDER">
+      
+      <ComponentGroupRef Id="BulkFileRenamerFiles" />
+      <ComponentRef Id="ApplicationShortcutDesktop" />
+      <ComponentRef Id="ApplicationShortcutStartMenu" />
+    </Feature>
+
+    <!-- Directory Structure -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      
+      <!-- Program Files Directory -->
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Bulk File Renamer">
+          <!-- Main application files will be installed here -->
+        </Directory>
+      </Directory>
+
+      <!-- Desktop Shortcut -->
+      <Directory Id="DesktopFolder" Name="Desktop" />
+
+      <!-- Start Menu Programs -->
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Bulk File Renamer" />
+      </Directory>
+      
+    </Directory>
+
+    <!-- NOTE: Main application files are harvested by Heat.exe -->
+    <!-- The BulkFileRenamerFiles ComponentGroup is defined in Files.wxs (auto-generated) -->
+
+    <!-- Desktop Shortcut Component -->
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="ApplicationShortcutDesktop" Guid="AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE">
+        <Shortcut 
+          Id="DesktopShortcut"
+          Name="Bulk File Renamer"
+          Description="Professional File Renaming Tool"
+          Target="[INSTALLFOLDER]BulkFileRenamer.exe"
+          WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="RemoveDesktopFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\BulkFileRenamer" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Start Menu Shortcut Component -->
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcutStartMenu" Guid="BBBBBBBB-CCCC-DDDD-EEEE-FFFFFFFFFFFF">
+        <Shortcut 
+          Id="ApplicationStartMenuShortcut"
+          Name="Bulk File Renamer"
+          Description="Professional File Renaming Tool"
+          Target="[INSTALLFOLDER]BulkFileRenamer.exe"
+          WorkingDirectory="INSTALLFOLDER" />
+        
+        <!-- Uninstall Shortcut in Start Menu -->
+        <Shortcut
+          Id="UninstallProduct"
+          Name="Uninstall Bulk File Renamer"
+          Description="Uninstalls Bulk File Renamer"
+          Target="[System64Folder]msiexec.exe"
+          Arguments="/x [ProductCode]" />
+        
+        <RemoveFolder Id="RemoveApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\BulkFileRenamer" Name="installed_menu" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+  </Product>
+</Wix>
